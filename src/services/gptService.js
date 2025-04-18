@@ -4,22 +4,21 @@
  * Parte da POC de integração com IA para o MeOrganiza
  */
 
-// Configuração das chaves de API (em produção, use variáveis de ambiente)
+// Configuração das chaves de API usando variáveis de ambiente
 const CONFIG = {
-  // Substitua com sua chave real em desenvolvimento
   apiKeys: {
-    openai: "sua-chave-openai-aqui",
-    gemini: "sua-chave-gemini-aqui"
+    openai: import.meta.env.VITE_OPENAI_API_KEY || "sua-chave-openai-aqui",
+    gemini: import.meta.env.VITE_GEMINI_API_KEY || "sua-chave-gemini-aqui"
   },
   models: {
-    openai: "gpt-4o",
-    gemini: "gemini-1.5-pro"
+    openai: import.meta.env.VITE_OPENAI_MODEL || "gpt-4o",
+    gemini: import.meta.env.VITE_GEMINI_MODEL || "gemini-1.5-pro"
   },
   endpoints: {
-    openai: "https://api.openai.com/v1/chat/completions",
-    gemini: "https://generativelanguage.googleapis.com/v1beta/models"
+    openai: import.meta.env.VITE_OPENAI_ENDPOINT || "https://api.openai.com/v1/chat/completions",
+    gemini: import.meta.env.VITE_GEMINI_ENDPOINT || "https://generativelanguage.googleapis.com/v1beta/models"
   },
-  useModel: "openai" // 'openai' ou 'gemini'
+  useModel: import.meta.env.VITE_AI_MODEL || "openai" // 'openai' ou 'gemini'
 };
 
 /**
