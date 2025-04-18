@@ -1,0 +1,327 @@
+:root {
+  /* espaço sidebar e espaçamentos gerais */
+  --sidebar-width: 240px;
+  --spacing: 16px;
+  /* cores gradiente para tema vibrante */
+  --gradient-primary: linear-gradient(135deg, #172B4D, #0C2E6E);
+  --gradient-secondary: linear-gradient(135deg, #0079BF, #026AA7);
+  --gradient-background: linear-gradient(135deg, #091E42, #152239);
+  /* base tipográfica: responsiva */
+  font-size: 100%;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  flex: 0 0 var(--sidebar-width); /* fixa a largura exata */
+  height: 100vh;       /* força altura total */
+  position: sticky;    /* permanece fixa ao rolar */
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background: var(--sidebar-bg, #000000);
+  color: white;
+  z-index: 20;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: width .3s;
+}
+
+.sidebar.collapsed {
+  width: 48px;
+}
+
+.sidebar.collapsed .menu-item span:not(:first-child) {
+  display: none;
+}
+
+.sidebar.collapsed .menu-item {
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.main-content {
+  width: calc(100vw - var(--sidebar-width) - 32px); /* largura da viewport menos sidebar e margens */
+  padding: var(--spacing);
+  flex: 1;
+  background: var(--board-bg, #091E42);
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Quando a sidebar está colapsada, ajustar a largura do conteúdo */
+.sidebar.collapsed ~ .main-content {
+  width: calc(100vw - 48px - 32px); /* 48px é a largura da sidebar colapsada */
+}
+
+/* Container principal flexível */
+.app-wrapper {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh; /* ocupa toda a altura da viewport */
+  gap: 0;              /* remove espaço entre sidebar e main */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Barra superior */
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--board-bg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 10;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Ícones de menu com efeitos hover */
+.menu-item {
+  border-radius: 3px;
+  margin: 4px 0;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(2px);
+}
+
+/* Menu ativo */
+.menu-item.active,
+.sidebar .active-menu-item {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.menu-item.active::after,
+.sidebar .active-menu-item::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background-color: #61BD4F;
+  border-radius: 4px;
+}
+
+.sidebar.collapsed .menu-item.active::after,
+.sidebar.collapsed .active-menu-item::after {
+  left: 0;
+  right: auto;
+  width: 3px;
+  height: 60%;
+}
+
+@keyframes gentle-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.sidebar .animate-pulse {
+  animation: gentle-pulse 2s infinite ease-in-out;
+}
+
+/* Área de trabalho definida */
+.workspace {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  background-color: transparent;
+}
+
+/* Badge de workspace */
+.workspace-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  color: #EBECF0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Grelha fluida para cards, listas etc */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing);
+}
+
+/* Cards estilizados */
+.card {
+  background-color: var(--card-bg, #172B4D);
+  border-radius: 3px;
+  padding: var(--spacing);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Textos com gradiente */
+.purple-pink-gradient-text {
+  color: #EBECF0;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+}
+
+/* Scrollbar customizado */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #1C2B4A transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+/* Imagens e vídeos se adaptam ao container */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Botões e inputs com estilo consistente */
+button, input, select, textarea {
+  border-radius: 3px;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Tipografia fluida */
+html {
+  font-size: 100%;
+}
+
+/* Breakpoints para responsividade */
+@media (max-width: 1024px) {
+  :root { font-size: 90%; }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: var(--sidebar-width);
+  }
+  
+  .sidebar.expanded {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    width: 100% !important; /* Força largura total em dispositivos móveis */
+    margin-left: 0 !important;
+  }
+  
+  .app-wrapper {
+    flex-direction: column;
+  }
+  
+  .board {
+    padding: 0 8px;
+    margin: 16px 0;
+  }
+  
+  .header {
+    padding: 8px 12px;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  :root { font-size: 85%; }
+  button, input, select, textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .header {
+    padding: 0 0.5rem;
+  }
+
+}
+
+.board {
+  max-width: 1280px;
+  margin: 32px 0;      /* remove margens laterais */
+  padding: 0 16px;
+  display: flex;
+  gap: var(--spacing); /* mantém gap entre listas internas */
+  overflow-x: auto;
+}
+
+/* 1. Garanta que o root ocupe 100% da altura */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo para tabelas e listas em visualização mobile */
+@media (max-width: 640px) {
+  .list {
+    flex: 0 0 calc(100vw - 32px); /* Cada lista ocupa a largura da tela */
+    max-height: calc(100vh - 180px); /* Altura ajustada para cabeçalho mobile */
+  }
+  
+  .workspace {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Ajustes para orientação landscape em mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .sidebar {
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .header {
+    height: auto;
+    min-height: 50px;
+  }
+} 

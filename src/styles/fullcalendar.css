@@ -1,0 +1,627 @@
+/* Estilos personalizados para o FullCalendar - Inspirado no Notion Calendar */
+
+:root {
+  /* Cores dos eventos por categoria */
+  --event-blue: #2383e2;
+  --event-blue-light: rgba(35, 131, 226, 0.1);
+  --event-orange: #e4723c;
+  --event-orange-light: rgba(228, 114, 60, 0.1);
+  --event-purple: #9065b0;
+  --event-purple-light: rgba(144, 101, 176, 0.1);
+  --event-green: #66bb6a;
+  --event-green-light: rgba(102, 187, 106, 0.1);
+  --event-red: #e35e5e;
+  --event-red-light: rgba(227, 94, 94, 0.1);
+  --event-yellow: #f8df72;
+  --event-yellow-light: rgba(248, 223, 114, 0.1);
+  
+  /* Variáveis do Notion Calendar */
+  --nc-bg: #f8f8f8;
+  --nc-sidebar-bg: #ffffff;
+  --nc-primary: #18a0fb;
+  --nc-text: #2c2c2c;
+  --nc-text-light: #6b6b6b;
+  --nc-border: #e1e1e1;
+  --nc-event-radius: 6px;
+  --nc-font: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* Estrutura geral do Notion Calendar */
+.notion-calendar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: var(--nc-font);
+  background-color: var(--nc-bg);
+}
+
+.fullcalendar-container {
+  margin: 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  background-color: var(--bg-card, #ffffff);
+  padding: 16px;
+  overflow: hidden;
+  font-family: var(--nc-font);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Layout de duas colunas para a versão desktop */
+.fullcalendar-layout {
+  display: flex;
+  height: 100%;
+  gap: 12px;
+}
+
+.fullcalendar-sidebar {
+  width: 280px;
+  background-color: var(--nc-sidebar-bg);
+  border-right: 1px solid var(--nc-border);
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.fullcalendar-main {
+  flex: 1;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Estilizando o cabeçalho do calendário */
+.fc .fc-toolbar {
+  margin-bottom: 16px !important;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilizando os botões do cabeçalho */
+.fc .fc-button-primary {
+  background-color: transparent;
+  border: 1px solid var(--nc-border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-left: 4px;
+  cursor: pointer;
+  color: var(--nc-text-light);
+  transition: background-color .2s, color .2s;
+  font-family: var(--nc-font);
+  font-weight: 400;
+  font-size: 0.8rem;
+  box-shadow: none;
+}
+
+.fc .fc-button-primary:hover {
+  background-color: var(--nc-primary);
+  color: #fff;
+  border-color: var(--nc-primary);
+  transform: none;
+  box-shadow: none;
+}
+
+.fc .fc-button-primary:not(:disabled):active,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  background-color: var(--nc-primary);
+  border-color: var(--nc-primary);
+  box-shadow: none;
+  color: #ffffff;
+}
+
+/* Estilizando o botão "hoje" */
+.fc .fc-today-button {
+  background-color: transparent;
+  border-color: var(--nc-border);
+  color: var(--nc-text-light);
+  font-weight: 500;
+}
+
+.fc .fc-today-button:hover {
+  background-color: var(--nc-primary);
+  color: #ffffff;
+}
+
+/* Estilizando o título */
+.fc .fc-toolbar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--nc-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Estilizando o cabeçalho da tabela */
+.fc th {
+  padding: 8px 0;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 0.8rem;
+  color: var(--nc-text-light);
+  letter-spacing: 0;
+  background-color: transparent;
+}
+
+/* Estilizando as células do calendário */
+.fc td {
+  border-color: var(--nc-border);
+}
+
+.fc .fc-daygrid-day {
+  transition: background-color 0.15s ease;
+  min-height: 100px;
+  border: 1px solid var(--nc-border);
+  border-bottom: none;
+  border-right: none;
+}
+
+.fc .fc-daygrid-day:hover {
+  background-color: var(--bg-hover, #f9f9f9);
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #fff;
+}
+
+.fc .fc-daygrid-day-number {
+  padding: 8px;
+  font-size: 0.85rem;
+  color: var(--nc-text-light);
+}
+
+.fc .fc-day-other .fc-daygrid-day-number {
+  opacity: 0.4;
+}
+
+/* Estilizando os eventos */
+.fc-event {
+  font-size: 0.8rem;
+  border-radius: var(--nc-event-radius) !important;
+  padding: 4px 6px !important;
+  box-shadow: none !important;
+  opacity: 0.95;
+  border: none !important;
+  margin-bottom: 2px;
+}
+
+.fc-event, 
+.fc-event-dot {
+  background-color: var(--nc-primary) !important;
+  color: #fff !important;
+}
+
+.fc-event:hover {
+  transform: none;
+  opacity: 0.9;
+}
+
+.fc-day-grid-event {
+  margin: 1px 3px;
+  padding: 3px 6px;
+}
+
+/* Cores específicas para tipos de eventos - Estilo Notion */
+.fc-event.event-aula {
+  background-color: var(--event-blue-light);
+  color: var(--event-blue);
+  border-left: 3px solid var(--event-blue);
+}
+
+.fc-event.event-estudo {
+  background-color: var(--event-green-light);
+  color: var(--event-green);
+  border-left: 3px solid var(--event-green);
+}
+
+.fc-event.event-trabalho {
+  background-color: var(--event-orange-light);
+  color: var(--event-orange);
+  border-left: 3px solid var(--event-orange);
+}
+
+.fc-event.event-prova {
+  background-color: var(--event-red-light);
+  color: var(--event-red);
+  border-left: 3px solid var(--event-red);
+}
+
+.fc-event.event-evento {
+  background-color: var(--event-purple-light);
+  color: var(--event-purple);
+  border-left: 3px solid var(--event-purple);
+}
+
+.fc-event.event-reuniao {
+  background-color: var(--event-yellow-light);
+  color: #b59c35;
+  border-left: 3px solid var(--event-yellow);
+}
+
+/* Ajustes para a visualização em semana e lista */
+.fc .fc-timegrid-slot {
+  border-top: 1px solid var(--nc-border);
+  height: 2.5em;
+}
+
+.fc .fc-timegrid-axis-cushion {
+  font-size: 0.75rem;
+  color: var(--nc-text-light);
+  padding-right: 8px;
+}
+
+.fc .fc-timegrid-slot-label-cushion {
+  font-size: 0.75rem;
+  color: var(--nc-text-light);
+}
+
+.fc .fc-list-day-cushion {
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.fc .fc-list-event {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.fc .fc-list-event:hover {
+  background-color: var(--bg-hover, #f9f9f9);
+}
+
+.fc-theme-standard .fc-list-day-cushion {
+  background-color: var(--bg-highlight, #f7f6f3);
+}
+
+/* Sidebar do calendário */
+.calendar-sidebar {
+  padding: 12px 0;
+}
+
+.calendar-sidebar-header {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--nc-text-light);
+  margin-bottom: 8px;
+  padding: 0 12px;
+}
+
+.calendar-sidebar-section {
+  margin-bottom: 20px;
+}
+
+.calendar-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  color: var(--nc-text);
+  border-radius: 3px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+
+.calendar-sidebar-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.calendar-sidebar-item.disabled {
+  opacity: 0.5;
+}
+
+.calendar-sidebar-item-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 0;
+}
+
+.calendar-sidebar-item-toggle {
+  margin-left: auto;
+  font-weight: bold;
+}
+
+/* Mini calendário */
+.mini-calendar {
+  margin-bottom: 20px;
+}
+
+.mini-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.mini-calendar-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.mini-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.mini-calendar-day {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.mini-calendar-day:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mini-calendar-day.current {
+  background-color: var(--nc-primary);
+  color: white;
+}
+
+.mini-calendar-day.empty {
+  visibility: hidden;
+}
+
+.mini-calendar-weekday {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--nc-text-light);
+  margin-bottom: 4px;
+}
+
+/* Barra de pesquisa */
+.calendar-search {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--nc-border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-bottom: 12px;
+}
+
+.calendar-search input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.8rem;
+  padding: 4px;
+  color: var(--nc-text);
+  margin-left: 4px;
+}
+
+.calendar-search input:focus {
+  outline: none;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .fullcalendar-layout {
+    flex-direction: column;
+  }
+  
+  .fullcalendar-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--nc-border);
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .fc .fc-toolbar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .fc .fc-toolbar-title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .fc-header-toolbar.fc-toolbar {
+    margin-bottom: 1rem;
+  }
+  
+  .fc .fc-daygrid-day {
+    min-height: 60px;
+  }
+  
+  .fc th {
+    padding: 6px 0;
+    font-size: 0.75rem;
+  }
+  
+  .fc .fc-daygrid-day-number {
+    font-size: 0.8rem;
+    padding: 3px;
+  }
+  
+  .fc-event {
+    font-size: 0.75rem;
+    padding: 1px 3px;
+  }
+}
+
+/* Tema escuro */
+.dark .notion-calendar {
+  background-color: #1a1a1a;
+}
+
+.dark .fullcalendar-container {
+  background-color: var(--bg-card-dark, #191919);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark .fullcalendar-sidebar {
+  background-color: #1f1f1f;
+  border-right-color: #333;
+}
+
+.dark .fc .fc-toolbar-title {
+  color: #e6e6e6;
+}
+
+.dark .fc .fc-button-primary {
+  background-color: transparent;
+  border-color: #333;
+  color: #e6e6e6;
+}
+
+.dark .fc .fc-button-primary:hover {
+  background-color: var(--nc-primary);
+  color: #ffffff;
+  border-color: var(--nc-primary);
+}
+
+.dark .fc th {
+  color: #a0a0a0;
+  background-color: transparent;
+}
+
+.dark .fc td {
+  border-color: #333;
+}
+
+.dark .fc .fc-daygrid-day-number {
+  color: #e6e6e6;
+}
+
+.dark .fc .fc-daygrid-day {
+  background-color: #1f1f1f;
+  border-color: #333;
+}
+
+.dark .fc .fc-daygrid-day:hover {
+  background-color: #252525;
+}
+
+.dark .fc .fc-daygrid-day.fc-day-today {
+  background-color: #242424;
+}
+
+.dark .fc-event {
+  box-shadow: none;
+}
+
+.dark .fc-event.event-aula {
+  background-color: rgba(35, 131, 226, 0.15);
+  color: #64b5f6;
+}
+
+.dark .fc-event.event-estudo {
+  background-color: rgba(102, 187, 106, 0.15);
+  color: #81c784;
+}
+
+.dark .fc-event.event-trabalho {
+  background-color: rgba(228, 114, 60, 0.15);
+  color: #ffb74d;
+}
+
+.dark .fc-event.event-prova {
+  background-color: rgba(227, 94, 94, 0.15);
+  color: #e57373;
+}
+
+.dark .fc-event.event-evento {
+  background-color: rgba(144, 101, 176, 0.15);
+  color: #ba68c8;
+}
+
+.dark .fc-event.event-reuniao {
+  background-color: rgba(248, 223, 114, 0.15);
+  color: #ffe082;
+}
+
+.dark .fc .fc-list-day-cushion {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.dark .fc .fc-list-event:hover {
+  background-color: #252525;
+}
+
+.dark .fc-theme-standard .fc-list-day-cushion {
+  background-color: #242424;
+}
+
+.dark .calendar-sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .calendar-sidebar-header,
+.dark .mini-calendar-weekday {
+  color: #a0a0a0;
+}
+
+.dark .calendar-sidebar-item {
+  color: #e6e6e6;
+}
+
+.dark .mini-calendar-day:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .calendar-search {
+  border-color: #333;
+}
+
+.dark .calendar-search input {
+  color: #e6e6e6;
+}
+
+/* Scrollbar customizada */
+.notion-calendar .fullcalendar-sidebar,
+.notion-calendar .fullcalendar-main {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nc-border) var(--nc-sidebar-bg);
+}
+
+.notion-calendar .fullcalendar-sidebar::-webkit-scrollbar,
+.notion-calendar .fullcalendar-main::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notion-calendar .fullcalendar-sidebar::-webkit-scrollbar-thumb,
+.notion-calendar .fullcalendar-main::-webkit-scrollbar-thumb {
+  background-color: var(--nc-border);
+  border-radius: 3px;
+}
+
+/* Navegação entre semanas e meses */
+.fc .fc-prev-button, .fc .fc-next-button {
+  background-color: transparent;
+  border: 1px solid var(--nc-border);
+  color: var(--nc-text-light);
+  font-size: 0.9rem;
+  padding: 5px 8px;
+  font-weight: 500;
+}
+
+.fc .fc-prev-button:hover, .fc .fc-next-button:hover {
+  background-color: var(--nc-primary);
+  color: #ffffff;
+  border-color: var(--nc-primary);
+}
+
+.dark .fc .fc-prev-button, .dark .fc .fc-next-button {
+  color: #e6e6e6;
+  border-color: #333;
+}
+
+.dark .fc .fc-prev-button:hover, .dark .fc .fc-next-button:hover {
+  background-color: var(--nc-primary);
+  color: #ffffff;
+  border-color: var(--nc-primary);
+} 

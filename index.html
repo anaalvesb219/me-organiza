@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#9C27B0" />
+    <meta name="description" content="MeOrganiza - Organize sua vida, tarefas escolares e projetos de forma intuitiva e prática" />
+    <meta name="keywords" content="organização, tarefas, estudantes, ensino médio, produtividade" />
+    <meta name="author" content="MeOrganiza" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="MeOrganiza - Sua plataforma de organização" />
+    <meta property="og:description" content="Organize sua vida escolar de maneira simples e eficiente" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://meorganiza.app" />
+    <meta property="og:image" content="/images/og-image.jpg" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload de assets críticos -->
+    <link rel="preload" href="/src/styles/index.css" as="style">
+    
+    <title>MeOrganiza | Organização para estudantes</title>
+    
+    <style>
+      /* Estilos críticos inline para evitar FOUC (Flash of Unstyled Content) */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #FFFFFF;
+        color: #212121;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        background: linear-gradient(135deg, #9C27B0, #EC407A);
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        transition: opacity 0.3s ease-out;
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div style="padding: 2rem; text-align: center;">
+        Você precisa habilitar JavaScript para executar este aplicativo.
+      </div>
+    </noscript>
+    
+    <!-- Tela de carregamento inicial -->
+    <div id="loading" class="loading">
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;" class="pulse">MeOrganiza</div>
+        <div style="font-size: 1rem; opacity: 0.9;">Carregando sua experiência...</div>
+      </div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Remove a tela de carregamento após o carregamento da página
+      window.addEventListener('load', function() {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.opacity = '0';
+          setTimeout(() => {
+            loading.style.display = 'none';
+          }, 300);
+        }
+      });
+      
+      // Registrar service worker para PWA
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js').catch(error => {
+            console.log('Service worker registration failed:', error);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

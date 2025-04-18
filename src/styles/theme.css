@@ -1,0 +1,141 @@
+:root {
+  /* Trello Dark Mode */
+  --bg-dark: #091E42;
+  --sidebar-bg: #000000;
+  --board-bg: #091E42;
+  --list-bg: #091E42;
+  --list-header-bg: #1D2838;
+  --card-bg: #172B4D;
+  --text-primary: #FFFFFF;
+  --text-secondary: #EBECF0;
+  --border-radius: 3px;
+  
+  /* Tipografia e hierarquia */
+  --font-family: 'Segoe UI', sans-serif;
+  --font-size-base: 14px;
+  --font-size-large: 16px;
+  --font-weight-regular: 400;
+  --font-weight-bold: 600;
+}
+
+[data-theme="dark"] {
+  background: var(--board-bg);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+}
+
+/* header, sidebar e footer */
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .header,
+[data-theme="dark"] .footer {
+  background: var(--sidebar-bg);
+  color: var(--text-primary);
+}
+
+/* Board container */
+.board {
+  background: var(--board-bg);
+  max-width: 1280px;
+  margin: 32px auto;
+  padding: 0 16px;
+  display: flex;
+  gap: 16px; /* espaço entre listas */
+  overflow-x: auto;
+}
+
+/* List */
+.list {
+  flex: 0 0 272px;   /* mesmo tamanho mínimo do Trello */
+  background: var(--list-bg);
+  border-radius: var(--border-radius);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 200px); /* scroll interno, se necessário */
+  overflow-y: auto;
+}
+
+.list-header {
+  background-color: var(--list-header-bg);
+  color: var(--text-primary);
+  padding: 8px;
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 8px;
+  margin-bottom: 8px;
+  transition: background-color .2s, transform .1s;
+}
+
+.card:hover {
+  background-color: #1F3A63; /* leve clareamento */
+  transform: translateY(-2px);
+}
+
+.card:focus-within {
+  outline: 2px solid #4C9AFF; /* mesmo azul de foco do Trello */
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .workspace,
+[data-theme="dark"] .menu-item {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  border-radius: var(--border-radius);
+  padding: 8px;
+  box-shadow: none;
+}
+
+/* Texts */
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] p, 
+[data-theme="dark"] span {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] a {
+  color: #61BD4F; /* verde Trello */
+}
+
+/* Remove bordas excessivas */
+[data-theme="dark"] .list, 
+[data-theme="dark"] .card {
+  border: none;
+}
+
+/* Scrollbars customizadas para tema escuro */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #1C2B4A;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--board-bg);
+}
+
+/* ícones e texto secundário */
+[data-theme="dark"] .icon,
+[data-theme="dark"] .text-secondary,
+[data-theme="dark"] .description {
+  color: var(--text-secondary);
+} 
