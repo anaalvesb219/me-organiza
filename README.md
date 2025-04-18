@@ -14,6 +14,7 @@ Um aplicativo de produtividade completo para estudantes gerenciarem suas tarefas
 - **Horários** - Gerenciamento de grade horária de aulas e compromissos
 - **Matérias** - Organização de disciplinas e materiais de estudo
 - **Temas Claro/Escuro** - Suporte a personalização visual
+- **Assistente IA** - Ajuda inteligente para organização e planejamento (POC)
 
 ## 🖥️ Tecnologias
 
@@ -24,6 +25,7 @@ Um aplicativo de produtividade completo para estudantes gerenciarem suas tarefas
 - **React Icons** - Pacote de ícones para interface
 - **TailwindCSS** - Framework CSS para estilização
 - **LocalStorage** - Armazenamento local de dados do usuário
+- **APIs de IA** - Integração com ChatGPT/Gemini para recursos inteligentes
 
 ## 🚀 Calendário estilo Notion
 
@@ -45,6 +47,31 @@ O aplicativo conta com um calendário inspirado no Notion Calendar, com as segui
 - Suporte a tema escuro
 
 ![Calendário Notion](https://via.placeholder.com/800x400?text=Notion+Calendar+Style)
+
+## 🤖 Integração com IA (POC)
+
+Esta branch (`poc-ia-integration`) contém uma Prova de Conceito para integração com modelos de IA como ChatGPT e Gemini. Os recursos incluem:
+
+- **Assistente de Planejamento** - Recomendações para organização do tempo
+- **Sugestão de Estudos** - Propõe horários ideais com base em produtividade
+- **Resumo de Notas** - Condensa e organiza anotações por assunto
+- **Priorização Inteligente** - Sugere ordem de tarefas com base em prazos e importância
+- **Agendamento Otimizado** - Analisa agenda e sugere melhores horários para novas atividades
+
+### Fluxo de Desenvolvimento:
+
+1. Validar conceitos de integração com IA nesta branch
+2. Testar e refinar as funcionalidades em ambiente controlado
+3. Uma vez aprovada a POC, criar branch de feature específica
+4. Implementar lógica de negócio completa
+5. Integrar ao projeto principal após validação
+
+### Implementação Atual:
+
+- Arquivo de serviço `src/services/gptService.js` para comunicação com APIs de IA
+- Componentes de interface para interação com assistente
+- Exemplos de prompts e respostas para casos de uso específicos
+- Sistema de fallback para operação offline
 
 ## 🛠️ Instalação e Uso
 
@@ -84,6 +111,7 @@ O aplicativo é totalmente responsivo, adaptando-se a diferentes tamanhos de tel
 - [ ] Aplicativo móvel (React Native)
 - [ ] Modo offline
 - [ ] Estatísticas de produtividade
+- [ ] Expansão das capacidades do assistente IA
 
 ## 📄 Licença
 
